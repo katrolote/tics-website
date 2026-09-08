@@ -38,12 +38,25 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(180deg, rgba(10, 10, 10, 0.86) 0%, rgba(10, 10, 10, 0.93) 45%, rgba(10, 10, 10, 0.98) 100%),
+    url('../img/hero-bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
   color: var(--text);
   font-family: var(--font-body);
   font-size: 17px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+@media (max-width: 720px) {
+  /* background-attachment: fixed se comporta mal en móviles (repaint en cada
+     scroll); en pantallas pequeñas se fija al viewport igualmente vía scroll. */
+  body { background-attachment: scroll; }
 }
 
 img { max-width: 100%; display: block; }
@@ -181,14 +194,6 @@ section:last-of-type { padding-bottom: var(--section-gap); }
   padding-top: clamp(72px, 12vw, 140px);
   padding-bottom: clamp(72px, 10vw, 120px);
   overflow: hidden;
-}
-
-.hero-poly {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  opacity: 0.5;
-  pointer-events: none;
 }
 
 .hero-content {

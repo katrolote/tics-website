@@ -1,6 +1,15 @@
 # Imágenes de la landing page
 
-Cada archivo `.svg` de esta carpeta es un **placeholder** — la página funciona y se ve completa
+`hero-bg.jpg` es el fondo atmosférico de toda la página (usado en `body` vía
+`assets/css/style.css`), generado con IA (Higgsfield, modelo `z_image`) con el
+prompt: *"Abstract atmospheric dark environment, pure black void with tiny
+glowing teal, coral and amber particles drifting like distributed sensor nodes
+forming a faint neural network shape, soft bokeh depth, minimal geometric light
+trails, elegant, moody, cinematic, no text, no logos, no people, ultra high
+detail"*. No es un placeholder — pueden reemplazarlo por otra imagen si
+prefieren otro fondo, pero no es obligatorio.
+
+Cada archivo `.svg` de esta carpeta (excepto `hero-bg.jpg`) es un **placeholder** — la página funciona y se ve completa
 sin que hagan nada, pero deben reemplazarlos por su contenido real antes de la entrega.
 
 | Archivo actual | Reemplazar por | Usado en |
