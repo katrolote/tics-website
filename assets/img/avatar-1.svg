@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Avatar placeholder integrante 1">
+  <rect width="240" height="240" fill="#141618"/>
+  <circle cx="120" cy="120" r="118" fill="none" stroke="#242729" stroke-width="2"/>
+  <circle cx="120" cy="96" r="38" fill="#22d3c8" opacity="0.9"/>
+  <path d="M48 208c8-46 44-70 72-70s64 24 72 70" fill="#22d3c8" opacity="0.9"/>
+  <text x="120" y="222" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="14" fill="#6b6b66">integrante 01</text>
+</svg>

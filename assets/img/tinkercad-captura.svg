@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" role="img" aria-label="Espacio para captura del circuito en Tinkercad">
+  <rect width="800" height="480" fill="#0f1112"/>
+  <rect x="12" y="12" width="776" height="456" fill="none" stroke="#2a2d2f" stroke-width="2" stroke-dasharray="10 8" rx="2"/>
+  <g stroke="#22d3c8" stroke-width="2" opacity="0.55" fill="none">
+    <rect x="330" y="180" width="140" height="90" rx="4"/>
+    <line x1="330" y1="210" x2="270" y2="210"/>
+    <line x1="470" y1="210" x2="530" y2="210"/>
+    <line x1="330" y1="240" x2="270" y2="240"/>
+    <line x1="470" y1="240" x2="530" y2="240"/>
+    <circle cx="270" cy="210" r="6"/>
+    <circle cx="270" cy="240" r="6"/>
+    <circle cx="530" cy="210" r="6"/>
+    <circle cx="530" cy="240" r="6"/>
+  </g>
+  <text x="400" y="320" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="20" fill="#8a8d8f">Captura del circuito — Tinkercad</text>
+  <text x="400" y="350" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="14" fill="#5c5f61">Reemplaza assets/img/tinkercad-captura.svg por tu captura real (.png/.jpg)</text>
+</svg>
