@@ -10,6 +10,7 @@ Esta carpeta guarda referencias de estilo (tokens, tipografía, componentes, reg
 |---|---|---|---|
 | [`dala.md`](./dala.md) | Dala | dark | `c9c5be5a-aaa1-4338-9681-8378d2e24fbd` |
 | [`monopo-saigon.md`](./monopo-saigon.md) | Monopo Saigon | light | no confirmado — el usuario pegó el contenido sin indicar a cuál URL de la lista original corresponde |
+| [`savee.md`](./savee.md) | Savee | dark | no confirmado — mismo caso que Monopo Saigon |
 
 ## Lista original de URLs (para referencia cruzada futura)
 
@@ -26,18 +27,20 @@ De la solicitud inicial del usuario (nota: la primera y la última URL de la lis
 - `8b6b547f-a357-4f1b-9842-4579c62dd42b`
 - `8eb9c53e-d69c-497a-b640-610856cf3a60`
 
-Solo 2 de las 10 referencias únicas se han documentado hasta ahora. Faltan 8 (y aún no está claro a cuál UUID corresponde "Monopo Saigon"). Para completar el resto, el usuario puede pegar el contenido de cada estilo restante, o resolver el acceso directo (red/suscripción de refero.design).
+Solo 3 de las 10 referencias únicas se han documentado hasta ahora (más una — Savee — que tampoco tiene UUID confirmado, así que en total hay al menos 11 estilos distintos en juego). Faltan por documentar las URLs restantes de la lista original. Para completar el resto, el usuario puede pegar el contenido de cada estilo restante, o resolver el acceso directo (red/suscripción de refero.design).
 
 ## Síntesis comparativa (hasta ahora)
 
-Ambos estilos comparten:
-- Un único acento cromático protagonista (nunca varios colores de acción a la vez).
-- Cero sombras / elevación — la jerarquía se logra con escala tipográfica, peso y espacio en blanco, no con `box-shadow`.
+Los tres estilos comparten:
+- Un único acento cromático protagonista (nunca varios colores de acción a la vez) — o, en el caso de Savee, ni siquiera eso: el acento vive solo en el CTA.
+- Cero sombras / elevación — la jerarquía se logra con escala tipográfica, peso, espacio en blanco y pasos de color de superficie, no con `box-shadow`.
 - Tipografía como principal herramienta de jerarquía, con pesos usados de forma poco convencional (pesos bajos en tamaños grandes).
 - Disciplina estricta de "no mezclar": reglas explícitas de qué NO hacer con radios, color y sombras.
+- Radios binarios: cada uno de los tres elige exactamente dos valores de radio (agudo/plano vs. píldora completa) y prohíbe cualquier valor intermedio.
 
 Difieren en:
-- **Dala** es dark-mode con violeta (`#8052ff`) como color de acción explícito y radios uniformes (24px).
+- **Dala** es dark-mode con violeta (`#8052ff`) como color de acción explícito y radios uniformes (24px, no binarios como los otros dos).
 - **Monopo Saigon** es light-mode, sin color de acción alguno, y usa contraste de radios (0px vs. 75px pill) como su gesto de firma.
+- **Savee** es dark-mode casi negro puro (`#050505`, más oscuro que Dala), con un solo acento (`#1500ff`) reservado exclusivamente al CTA primario — ni siquiera los links lo usan — y jerarquía de superficies en tres pasos casi imperceptibles (`#050505`→`#151515`→`#1e1e1e`) en vez de un fondo plano único.
 
-No hay todavía suficiente muestra (2 de 10) para generalizar reglas de "estilo Refero" más allá de estas observaciones puntuales.
+Con 3 muestras empieza a verse un patrón repetido en "estilo Refero": un acento único y muy restringido, cero sombras, y radios binarios — pero sigue siendo una muestra pequeña para generalizar con certeza.
