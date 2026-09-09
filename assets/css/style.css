@@ -31,9 +31,11 @@
   --section-gap: clamp(64px, 9vw, 120px);
   --page-max: 1180px;
 
-  /* Curva de easing documentada en design-references/monopo-saigon.md
-     (Motion Personality) — transiciones lentas y fluidas en vez de snaps. */
-  --ease-fluid: cubic-bezier(0.19, 1, 0.22, 1);
+  /* Curvas de easing — nunca aproximadas, tomadas del sistema de motion:
+     ease-out fuerte para entradas, ease-in-out fuerte para movimiento en
+     pantalla, `ease` plano para hover/color. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 * { box-sizing: border-box; }
@@ -43,13 +45,6 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background-color: var(--bg);
-  background-image:
-    linear-gradient(180deg, rgba(10, 10, 10, 0.86) 0%, rgba(10, 10, 10, 0.93) 45%, rgba(10, 10, 10, 0.98) 100%),
-    url('../img/hero-bg.jpg');
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: cover;
-  background-attachment: fixed;
   color: var(--text);
   font-family: var(--font-body);
   font-size: 17px;
@@ -57,22 +52,87 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-@media (max-width: 720px) {
-  /* background-attachment: fixed se comporta mal en móviles (repaint en cada
-     scroll); en pantallas pequeñas se fija al viewport igualmente vía scroll. */
-  body { background-attachment: scroll; }
-}
-
-/* Fondo animado: campo de partículas dibujado en canvas por assets/js/main.js
-   (deshabilitado si el usuario prefiere menos movimiento — ver JS). Vive
-   detrás de todo el contenido; la imagen/gradiente estático de body queda
-   debajo como respaldo visual si JS no corre. */
-#bg-canvas {
+/*
+  Fondo aurora: manchas de gradiente radial, desenfocadas, moviéndose en
+  bucles lentos y asíncronos. Puro CSS — sin canvas, sin requestAnimationFrame:
+  solo transform + opacity, así que corre en el compositor (GPU) y no compite
+  con el hilo principal mientras la página carga o hace scroll. Cada blob
+  recorre una trayectoria propia que vuelve a su punto de partida para un
+  loop perfecto, sin salto en la costura.
+*/
+#bg-aurora {
   position: fixed;
   inset: 0;
   z-index: -1;
+  overflow: hidden;
   pointer-events: none;
-  display: block;
+}
+
+#bg-aurora::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(10, 10, 10, 0.55) 65%, var(--bg) 100%);
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  will-change: transform;
+}
+
+.aurora-blob--teal {
+  width: 52vw;
+  height: 52vw;
+  top: -10vw;
+  left: -8vw;
+  background: radial-gradient(circle, rgba(34, 211, 200, 0.5) 0%, transparent 70%);
+  animation: drift-a 34s var(--ease-in-out) infinite;
+}
+
+.aurora-blob--coral {
+  width: 44vw;
+  height: 44vw;
+  bottom: -14vw;
+  right: -10vw;
+  background: radial-gradient(circle, rgba(255, 111, 97, 0.4) 0%, transparent 70%);
+  animation: drift-b 41s var(--ease-in-out) infinite;
+}
+
+.aurora-blob--gold {
+  width: 34vw;
+  height: 34vw;
+  top: 38%;
+  left: 46%;
+  background: radial-gradient(circle, rgba(242, 193, 78, 0.32) 0%, transparent 70%);
+  animation: drift-c 47s var(--ease-in-out) infinite;
+}
+
+@keyframes drift-a {
+  0%   { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(14vw, 8vw) scale(1.15); }
+  50%  { transform: translate(6vw, 18vw) scale(0.95); }
+  75%  { transform: translate(-10vw, 6vw) scale(1.05); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes drift-b {
+  0%   { transform: translate(0, 0) scale(1); }
+  30%  { transform: translate(-12vw, -10vw) scale(1.1); }
+  60%  { transform: translate(-4vw, -20vw) scale(0.9); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes drift-c {
+  0%   { transform: translate(0, 0) scale(1); }
+  40%  { transform: translate(-8vw, 10vw) scale(1.2); }
+  70%  { transform: translate(9vw, -6vw) scale(0.85); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob { animation: none; }
 }
 
 img { max-width: 100%; display: block; }
@@ -387,14 +447,12 @@ section:last-of-type { padding-bottom: var(--section-gap); }
 }
 
 .media-frame img,
-.media-frame video {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 1s var(--ease-fluid);
-}
+.media-frame video { width: 100%; height: auto; display: block; }
 
-.media-frame:hover img { transform: scale(1.035); }
+@media (hover: hover) and (pointer: fine) {
+  .media-frame img { transition: transform 220ms ease; }
+  .media-frame:hover img { transform: scale(1.04); }
+}
 
 .two-col {
   display: grid;
@@ -468,12 +526,14 @@ audio { width: 100%; margin-top: 18px; }
   border-radius: var(--radius-sharp);
   overflow: hidden;
   background: var(--bg-panel);
-  transition: transform 0.9s var(--ease-fluid), border-color 0.9s var(--ease-fluid);
 }
 
-.team-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--border-strong);
+@media (hover: hover) and (pointer: fine) {
+  .team-card { transition: transform 220ms ease, border-color 220ms ease; }
+  .team-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-strong);
+  }
 }
 
 .team-card img { aspect-ratio: 1 / 1; object-fit: cover; }
@@ -540,14 +600,16 @@ audio { width: 100%; margin-top: 18px; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  #bg-canvas { display: none; }
-  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  /* Menos movimiento, no cero: se conservan los fades de opacidad (ayudan a
+     entender qué apareció), se elimina el desplazamiento/escala. */
+  * { transition-property: opacity, color, background-color, border-color !important; }
+  .aurora-blob { animation: none; }
 }
 
 @media (max-width: 720px) {
-  .nav-menu { display: none; }
   .nav-toggle { display: block; }
-  .nav.open .nav-menu {
+
+  .nav-menu {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -559,10 +621,20 @@ audio { width: 100%; margin-top: 18px; }
     border-bottom: 1px solid var(--border);
     padding: 20px clamp(20px, 5vw, 48px) 28px;
     gap: 18px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out), visibility 0s linear 220ms;
   }
-  .nav.open .nav-links {
-    flex-direction: column;
-    gap: 18px;
+  .nav-menu .nav-links { flex-direction: column; gap: 18px; }
+  .nav-menu .nav-cta { justify-content: center; }
+
+  .nav.open .nav-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out), visibility 0s linear 0s;
   }
-  .nav.open .nav-cta { justify-content: center; }
 }
