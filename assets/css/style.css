@@ -182,6 +182,14 @@ section:last-of-type { padding-bottom: var(--section-gap); }
   font-size: 17px;
 }
 
+/*
+  Revelado de texto (titulares y leads): estilos aplicados por
+  assets/js/main.js vía inline style, nunca aquí. Si JS no corre por
+  cualquier razón, .text-reveal no lleva ningún estado oculto propio en
+  CSS, así que el texto simplemente se muestra normal — nunca puede
+  quedarse invisible por un fallo de script.
+*/
+
 /* ---------- Nav ---------- */
 
 .nav {
