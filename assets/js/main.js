@@ -77,7 +77,10 @@ function groupByAncestor(elements) {
   return groups;
 }
 
-const revealTargets = document.querySelectorAll('.card, .team-card, .media-frame');
+// .team-card ya no entra individualmente aquí: ahora vive dentro del
+// carrusel (.team-carousel), que entra como un solo bloque — los
+// integrantes ya no "flotan en cascada" sueltos, entra el componente.
+const revealTargets = document.querySelectorAll('.card, .team-carousel, .media-frame');
 
 if ('IntersectionObserver' in window && !prefersReducedMotion) {
   groupByAncestor(revealTargets).forEach((els) => {
@@ -147,4 +150,103 @@ if ('IntersectionObserver' in window && !prefersReducedMotion && textRevealTarge
     { threshold: 0.15 }
   );
   groupByAncestor(textRevealTargets).forEach((els, container) => textObserver.observe(container));
+}
+
+// Carrusel 3D del equipo (coverflow) — JS solo cambia data-offset en cada
+// .team-slide; el timing/curva del movimiento vive en style.css (CSS
+// transition), no acá. Sin auto-rotate: el usuario decide cuándo avanzar
+// (prev/next, dots, swipe, flechas de teclado), nunca gira solo.
+const teamCarousel = document.querySelector('[data-team-carousel]');
+
+if (teamCarousel) {
+  const slides = [...teamCarousel.querySelectorAll('[data-slide]')];
+  const dots = [...teamCarousel.querySelectorAll('[data-team-dot]')];
+  const prevBtn = teamCarousel.querySelector('[data-team-prev]');
+  const nextBtn = teamCarousel.querySelector('[data-team-next]');
+  const stage = teamCarousel.querySelector('.team-stage');
+  const count = slides.length;
+  let active = 0;
+
+  function render() {
+    slides.forEach((slide, i) => {
+      let offset = i - active;
+      if (offset > count / 2) offset -= count;
+      if (offset < -count / 2) offset += count;
+      if (offset === 0) slide.dataset.offset = '0';
+      else if (offset === -1) slide.dataset.offset = '-1';
+      else if (offset === 1) slide.dataset.offset = '1';
+      else slide.dataset.offset = 'hidden';
+    });
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('is-active', i === active);
+      dot.setAttribute('aria-selected', String(i === active));
+    });
+  }
+
+  function goTo(index) {
+    active = ((index % count) + count) % count;
+    render();
+  }
+
+  if (count > 1) {
+    prevBtn?.addEventListener('click', () => goTo(active - 1));
+    nextBtn?.addEventListener('click', () => goTo(active + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+    teamCarousel.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') goTo(active - 1);
+      if (e.key === 'ArrowRight') goTo(active + 1);
+    });
+
+    // Swipe/drag horizontal sobre el stage.
+    let dragStartX = null;
+    stage.style.touchAction = 'pan-y';
+    stage.addEventListener('pointerdown', (e) => { dragStartX = e.clientX; });
+    stage.addEventListener('pointerup', (e) => {
+      if (dragStartX === null) return;
+      const delta = e.clientX - dragStartX;
+      if (Math.abs(delta) > 40) goTo(active + (delta < 0 ? 1 : -1));
+      dragStartX = null;
+    });
+  } else {
+    prevBtn?.setAttribute('hidden', '');
+    nextBtn?.setAttribute('hidden', '');
+    teamCarousel.querySelector('.team-controls')?.setAttribute('hidden', '');
+  }
+
+  render();
+}
+
+// Draw-on de los íconos "i" informativos (.field-note) al entrar en
+// vista — mismo principio de seguridad que .text-reveal: el estado
+// oculto (stroke-dasharray/dashoffset) se fija aquí, nunca en CSS
+// estático, así que si el script no llega a correr el ícono se ve
+// normal (trazo completo) desde el primer render. pathLength="1"
+// normaliza cualquier forma a longitud 1, así no hace falta medir cada
+// path con getTotalLength().
+const iconDrawTargets = document.querySelectorAll('.field-note svg');
+
+if ('IntersectionObserver' in window && !prefersReducedMotion && iconDrawTargets.length) {
+  iconDrawTargets.forEach((svg) => {
+    svg.querySelectorAll('circle, path').forEach((shape, i) => {
+      shape.setAttribute('pathLength', '1');
+      shape.style.strokeDasharray = '1';
+      shape.style.strokeDashoffset = '1';
+      shape.style.transition = `stroke-dashoffset 700ms var(--ease-out) ${i * 150}ms`;
+    });
+  });
+
+  const iconObserver = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.querySelectorAll('circle, path').forEach((shape) => {
+          shape.style.strokeDashoffset = '0';
+        });
+        obs.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.4 }
+  );
+  iconDrawTargets.forEach((svg) => iconObserver.observe(svg));
 }
