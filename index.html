@@ -34,7 +34,7 @@
           <circle cx="9.5" cy="10" r="1.3" fill="var(--nav-bg)"/>
           <circle cx="14.5" cy="10" r="1.3" fill="var(--nav-bg)"/>
         </svg>
-        [Nombre del Proyecto]
+        SafeLine Petapa: Sistema Automatizado de Monitoreo y Control de Aforo para Atracciones
       </a>
       <div class="nav-menu">
         <ul class="nav-links">
@@ -56,11 +56,13 @@
 <header class="hero" id="inicio">
   <div class="wrap hero-content">
     <span class="eyebrow text-reveal">Empresa de Ingeniería en Automatización y Control · IRTRA Petapa</span>
-    <h1 class="text-reveal">[Nombre del Proyecto] <span class="placeholder-text">.</span></h1>
+    <h1 class="text-reveal">SafeLine Petapa: Sistema Automatizado de Monitoreo y Control de Aforo para Atracciones <span class="placeholder-text">.</span></h1>
     <p class="lede text-reveal">
-      [Resumen breve del proyecto en 2–3 líneas: qué problemática operacional, de seguridad,
-      de entretenimiento o energética del parque IRTRA Petapa resuelve el sistema electrónico
-      autónomo diseñado por el equipo, y cómo se alinea con el ODS seleccionado.]
+      SafeLine Petapa es un proyecto de tecnología que propone un sistema automatizado para monitorear y controlar el aforo en las atracciones del parque IRTRA Petapa, 
+      desarrollado como parte de una simulación de clase donde el estudiante actúa como una empresa de electrónica contratada por el parque. El sistema utiliza una placa
+      Arduino Uno R3 junto con un sensor ultrasónico HC-SR04 y un sensor infrarrojo PIR para contar y detectar el paso de visitantes, una fotorresistencia LDR que ajusta 
+      el funcionamiento según la luz ambiental, y un LED RGB junto con un zumbador que alertan visual y sonoramente cuando una zona se acerca o alcanza su límite seguro 
+      de personas, buscando así prevenir aglomeraciones y reforzar la seguridad dentro del parque.
     </p>
     <div class="hero-actions">
       <a href="#circuito" class="btn btn-primary">Ver el circuito</a>
@@ -73,11 +75,11 @@
       </div>
       <div>
         <div class="label">Sección</div>
-        <div class="value">[Grado y sección]</div>
+        <div class="value">11mo "A"</div>
       </div>
       <div>
         <div class="label">Equipo</div>
-        <div class="value">[Apellido 1] · [Apellido 2] · [Apellido 3]</div>
+        <div class="value">Ordoñez · De la Cerda · Garcia</div>
       </div>
     </div>
   </div>
@@ -91,21 +93,22 @@
     </div>
 
     <div class="status-row">
-      <span class="pill ods"><span class="dot"></span> ODS [número]: [nombre del Objetivo de Desarrollo Sostenible]</span>
-      <span class="pill status"><span class="dot"></span> Estado del sistema: [Funciona / No funciona]</span>
+      <span class="pill ods"><span class="dot"></span> ODS 3: Salud y Bienestar</span>
+      <span class="pill status"><span class="dot"></span> Estado del sistema: Funciona </span>
     </div>
 
     <div class="reto-grid">
       <div>
         <p>
-          [Describe aquí la problemática operacional, de seguridad, de entretenimiento o energética
-          identificada en IRTRA Petapa — real o inventada. Explica el contexto de la empresa consultora
-          y por qué esta problemática es relevante para el parque.]
+          Las atracciones de IRTRA Petapa pueden llegar a superar su capacidad segura de visitantes
+          en horarios de alta afluencia, generando aglomeraciones que dificultan una evacuación rápida
+          en caso de emergencia y aumentan el riesgo de accidentes.
         </p>
         <p>
-          [Explica cómo el sistema electrónico autónomo diseñado (el circuito simulado en Tinkercad)
-          resuelve o automatiza esta problemática, y de qué forma se alinea estrictamente con el
-          ODS seleccionado.]
+          El sistema cuenta automáticamente el ingreso y salida de personas mediante sensores,
+          comparando ese conteo contra un límite seguro programado. Cuando se acerca o supera ese
+          límite, el sistema emite una alerta visual (LED RGB) y sonora (buzzer) para que el personal
+          del parque actúe a tiempo.
         </p>
       </div>
 
@@ -113,10 +116,12 @@
         <h3>Materiales del circuito</h3>
         <ul class="materials-list">
           <li>Arduino Uno R3 (Protoboard)</li>
-          <li>[Componente 2 — ej. Sensor Ultrasónico HC-SR04]</li>
-          <li>[Componente 3 — ej. Diodo LED RGB]</li>
-          <li>[Componente 4 — ej. Buzzer]</li>
-          <li>[Agrega o quita componentes según tu circuito]</li>
+          <li>Sensor Ultrasónico HC-SR04</li>
+          <li>Diodo LED RGB</li>
+          <li>Buzzer</li>
+          <li>Sensor de movimiento PIR</li>
+          <li>Fotorresistencia LDR</li>
+          <li>boton</li>
         </ul>
       </div>
     </div>
@@ -127,18 +132,20 @@
   <div class="wrap">
     <div class="two-col">
       <div class="media-frame">
-        <img src="assets/img/tinkercad-captura.svg" alt="Captura del circuito armado en Tinkercad" id="tinkercadImg">
+        <img src="circuitotemario.png" alt="Captura del circuito armado en Tinkercad" id="tinkercadImg">
       </div>
       <div>
         <span class="eyebrow text-reveal">Fase inicial · Obligatoria</span>
         <h2 class="text-reveal">Circuito simulado en Tinkercad</h2>
         <p class="text-reveal" style="color:var(--text-muted); margin-top:16px;">
-          [Breve descripción técnica del circuito: qué hace, cómo reacciona a las entradas de los
-          sensores, y qué lógica de control implementa el código en C++.]
+          El sensor HC-SR04 mide la distancia y detecta el paso de personas por un punto de acceso,
+          mientras el sensor PIR refuerza esa detección captando movimiento por radiación infrarroja.
+          La fotorresistencia LDR ajusta el brillo del LED según la luz ambiental. El código en C++ 
+          compara el conteo contra el límite de aforo: si está en rango seguro el LED se enciende en 
+          verde, si se acerca cambia a amarillo, y si lo supera cambia a rojo y activa el buzzer.
         </p>
         <div class="field-note">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-          <span>Reemplaza <code>assets/img/tinkercad-captura.svg</code> por tu captura real (PNG o JPG legible).</span>
         </div>
         <div class="link-row">
           <a class="btn btn-primary" href="#" id="tinkercadLink">Abrir circuito en Tinkercad ↗</a>
@@ -151,13 +158,12 @@
       <h3 class="text-reveal">Video del circuito en funcionamiento</h3>
       <div class="media-frame media-frame--video">
         <video controls preload="none" poster="assets/img/tinkercad-captura.svg">
-          <source src="assets/video/circuito-demo.mp4" type="video/mp4">
-          Tu navegador no soporta video HTML5. Descarga el archivo desde <code>assets/video/circuito-demo.mp4</code>.
+          <source src="video-circuito.mp4" type="video/mp4">
+          Tu navegador no soporta video HTML5. Descarga el archivo desde <code>video-circuito.mp4</code>.
         </video>
       </div>
       <div class="field-note">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-        <span>Graba una demostración corta del circuito funcionando en Tinkercad (o físico, si hicieron el reto de suficiencia) y colócala en <code>assets/video/circuito-demo.mp4</code>.</span>
       </div>
     </div>
   </div>
@@ -167,9 +173,13 @@
   <div class="wrap">
     <div class="two-col reverse">
       <div class="media-frame" style="aspect-ratio:4/3; display:flex; align-items:center; justify-content:center;">
-        <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.4">
-          <path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/>
-        </svg>
+        <iframe 
+          src="docs/documentacion.pdf" 
+          width="100%" 
+          height="100%" 
+          style="border: none; border-radius: var(--radius-md, 12px);"
+          title="Previsualización del Documento de Investigación">
+        </iframe>
       </div>
       <div>
         <span class="eyebrow text-reveal">Documento Formal de Investigación</span>
@@ -181,8 +191,8 @@
           el repositorio del proyecto.
         </p>
         <div class="link-row">
-          <a class="btn btn-primary" href="#" id="githubLink">Ver en GitHub ↗</a>
-          <a class="btn btn-ghost" href="#" id="pdfLink">Descargar PDF</a>
+          <a class="btn btn-primary" href="docs/documentacion.pdf" id="githubLink">Ver en GitHub ↗</a>
+          <a class="btn btn-ghost" href="docs/documentacion.pdf" id="pdfLink">Descargar PDF</a>
         </div>
         <div class="field-note">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
