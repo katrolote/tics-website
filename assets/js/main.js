@@ -16,9 +16,14 @@ if (navToggle) {
   });
 }
 
-// Resalta el link de nav según la sección visible
+// Resalta el link de nav según la sección visible, y desliza el
+// indicador de píldora (.nav-indicator) hasta ese link — solo con
+// translateX, recalculado cada vez que cambia la sección activa, nunca
+// en cada pixel de scroll.
 const sections = document.querySelectorAll('section[id], header[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
+const navLinksList = document.querySelector('.nav-links');
+const navIndicator = document.querySelector('.nav-indicator');
 
 if ('IntersectionObserver' in window && sections.length) {
   const observer = new IntersectionObserver(
@@ -26,9 +31,23 @@ if ('IntersectionObserver' in window && sections.length) {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         const id = entry.target.getAttribute('id');
+        let activeLink = null;
         navLinks.forEach((link) => {
-          link.style.color = link.getAttribute('href') === `#${id}` ? 'var(--nav-text)' : '';
+          const isActive = link.getAttribute('href') === `#${id}`;
+          link.style.color = isActive ? 'var(--nav-text)' : '';
+          if (isActive) activeLink = link;
         });
+        if (navIndicator && navLinksList) {
+          if (activeLink) {
+            const linkRect = activeLink.getBoundingClientRect();
+            const containerRect = navLinksList.getBoundingClientRect();
+            const center = linkRect.left - containerRect.left + linkRect.width / 2;
+            navIndicator.style.transform = `translateX(${center - 8}px)`;
+            navIndicator.style.opacity = '1';
+          } else {
+            navIndicator.style.opacity = '0';
+          }
+        }
       });
     },
     { rootMargin: '-45% 0px -45% 0px' }
