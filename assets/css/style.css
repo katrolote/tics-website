@@ -4,23 +4,32 @@
   (Dala, Monopo Saigon): un solo acento por acción, cero sombras/elevación,
   jerarquía por escala y peso tipográfico, y contraste de radios
   (agudo para paneles, píldora completa solo para acciones).
+
+  Paleta (proporcionada por el usuario) — una rampa mono-hue de sage a cian:
+    Granite #5C6F68 · Muted Teal #8AA39B · Pearl Aqua #95D9C3 ·
+    Aquamarine #A4F9C8 · Soft Cyan #A7FFF6
+  Se usan los 5 tonos exactos para cada rol de marca; los únicos valores
+  derivados son los neutros de fondo/texto que todo sistema necesita para
+  contraste (oscurecidos/aclarados a partir de la misma familia de matiz,
+  nunca un gris o negro neutro importado de fuera de la paleta).
 */
 
 :root {
-  --bg: #0a0a0a;
-  --bg-panel: #111315;
-  --bg-panel-alt: #16181a;
-  --border: rgba(255, 255, 255, 0.09);
-  --border-strong: rgba(255, 255, 255, 0.18);
+  --bg: #1a2220;            /* Granite oscurecido — lienzo de página */
+  --bg-panel: #263029;      /* Granite oscurecido, un paso más claro — tarjetas */
+  --bg-panel-alt: #2f3a33;
+  --border: rgba(138, 163, 155, 0.16);        /* Muted Teal tintado */
+  --border-strong: rgba(149, 217, 195, 0.30); /* Pearl Aqua tintado */
 
-  --text: #f4f4f0;
-  --text-muted: #9a9a95;
-  --text-dim: #6b6b66;
+  --text: #eef9f5;          /* casi blanco con un toque de menta */
+  --text-muted: #8AA39B;    /* Muted Teal exacto */
+  --text-dim: #6d7f79;      /* Muted Teal oscurecido */
 
-  --accent: #22d3c8;      /* teal — única acción primaria */
-  --accent-strong: #17b6ac;
-  --accent-warm: #ff6f61;  /* coral — énfasis puntual, nunca botones */
-  --accent-gold: #f2c14e;  /* dorado — tercer acento, muy puntual */
+  --accent: #A7FFF6;        /* Soft Cyan — única acción primaria */
+  --accent-strong: #95D9C3; /* Pearl Aqua — hover del acento primario */
+  --accent-warm: #A4F9C8;   /* Aquamarine — énfasis puntual, nunca botones */
+  --accent-gold: #A4F9C8;   /* Aquamarine — reutilizado para el segundo dot de pill */
+  --on-accent: #16211d;     /* Granite muy oscurecido — texto sobre fondos de acento claros */
 
   --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   --font-body: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
@@ -72,7 +81,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 0%, rgba(10, 10, 10, 0.55) 65%, var(--bg) 100%);
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(26, 34, 32, 0.55) 65%, var(--bg) 100%);
 }
 
 .aurora-blob {
@@ -87,7 +96,7 @@ body {
   height: 52vw;
   top: -10vw;
   left: -8vw;
-  background: radial-gradient(circle, rgba(34, 211, 200, 0.5) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(167, 255, 246, 0.45) 0%, transparent 70%); /* Soft Cyan */
   animation: drift-a 34s var(--ease-in-out) infinite;
 }
 
@@ -96,7 +105,7 @@ body {
   height: 44vw;
   bottom: -14vw;
   right: -10vw;
-  background: radial-gradient(circle, rgba(255, 111, 97, 0.4) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(164, 249, 200, 0.38) 0%, transparent 70%); /* Aquamarine */
   animation: drift-b 41s var(--ease-in-out) infinite;
 }
 
@@ -105,7 +114,7 @@ body {
   height: 34vw;
   top: 38%;
   left: 46%;
-  background: radial-gradient(circle, rgba(242, 193, 78, 0.32) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(149, 217, 195, 0.32) 0%, transparent 70%); /* Pearl Aqua */
   animation: drift-c 47s var(--ease-in-out) infinite;
 }
 
@@ -196,7 +205,7 @@ section:last-of-type { padding-bottom: var(--section-gap); }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(10, 10, 10, 0.82);
+  background: rgba(26, 34, 32, 0.82);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
 }
@@ -259,7 +268,7 @@ section:last-of-type { padding-bottom: var(--section-gap); }
 
 .nav-cta:hover {
   border-color: var(--accent);
-  background: rgba(34, 211, 200, 0.08);
+  background: rgba(167, 255, 246, 0.1);
 }
 
 .nav-toggle {
@@ -326,7 +335,7 @@ section:last-of-type { padding-bottom: var(--section-gap); }
 
 .btn-primary {
   background: var(--accent);
-  color: #06231f;
+  color: var(--on-accent);
 }
 
 .btn-primary:hover { background: var(--accent-strong); }
@@ -471,6 +480,24 @@ section:last-of-type { padding-bottom: var(--section-gap); }
 
 .two-col.reverse { grid-template-columns: 0.85fr 1.15fr; }
 .two-col.reverse .media-frame { order: -1; }
+
+.circuito-video {
+  margin-top: 64px;
+  max-width: 720px;
+}
+
+.circuito-video h3 {
+  font-size: clamp(22px, 3vw, 28px);
+  margin-top: 8px;
+}
+
+.media-frame--video { aspect-ratio: 16 / 9; }
+
+.media-frame--video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 .field-note {
   display: flex;
