@@ -14,10 +14,11 @@ completa tal cual, pero deben reemplazar:
 1. **Nombre del proyecto, integrantes, grado/sección** — buscar `[corchetes]` en `index.html`.
 2. **Problemática, ODS y estado del sistema** — sección `#reto`.
 3. **Captura de Tinkercad + enlace al circuito** — `assets/img/tinkercad-captura.svg` y el botón "Abrir circuito en Tinkercad".
-4. **Documento de investigación (.docx/.pdf)** — ver `docs/README.md`.
-5. **Infografía ejecutiva** — `assets/img/infografia.svg` (ver `assets/img/README.md`).
-6. **Podcast** — `assets/audio/podcast.mp3` (ver `assets/audio/README.md`).
-7. **Avatares del equipo generados con IA** — `assets/img/avatar-1.svg`, `avatar-2.svg`, `avatar-3.svg`.
+4. **Video del circuito funcionando** — `assets/video/circuito-demo.mp4` (ver `assets/video/README.md`).
+5. **Documento de investigación (.docx/.pdf)** — ver `docs/README.md`.
+6. **Infografía ejecutiva** — `assets/img/infografia.svg` (ver `assets/img/README.md`).
+7. **Podcast** — `assets/audio/podcast.mp3` (ver `assets/audio/README.md`).
+8. **Avatares del equipo generados con IA** — `assets/img/avatar-1.svg`, `avatar-2.svg`, `avatar-3.svg`.
 
 Cada carpeta de `assets/` tiene su propio `README.md` con el detalle exacto.
 
@@ -45,8 +46,9 @@ para que GitHub Pages lo renderice automáticamente.
 index.html              ← archivo principal (obligatorio en la raíz)
 assets/
   css/style.css         ← sistema de diseño (ver /design-references)
-  js/main.js             ← menú móvil, scroll-reveal, nav activo
+  js/main.js             ← menú móvil, scroll-reveal, revelado de texto, nav activo
   img/                   ← avatares, captura de Tinkercad, infografía (+ README)
+  video/                 ← circuito-demo.mp4 (+ README)
   audio/                 ← podcast.mp3 (+ README)
 docs/                    ← documento formal de investigación (.docx/.pdf) (+ README)
 design-references/       ← referencias de estilo usadas como base de diseño
@@ -56,5 +58,19 @@ design-references/       ← referencias de estilo usadas como base de diseño
 
 El estilo visual (fondo casi negro, un solo acento de acción, cero sombras, contraste de radios
 agudo/píldora, jerarquía por escala tipográfica) se basa en las lecciones documentadas en
-[`design-references/`](./design-references/), adaptadas con paleta propia (teal/coral/dorado)
-para no repetir literalmente ninguna de esas referencias.
+[`design-references/`](./design-references/), sin repetir literalmente ninguna referencia.
+
+**Paleta actual** (proporcionada por el usuario — rampa sage-a-cian):
+
+| Nombre | Hex | Rol en el sitio |
+|---|---|---|
+| Granite | `#5C6F68` | base de los tonos oscuros (fondo, paneles, texto sobre acento) |
+| Muted Teal | `#8AA39B` | texto secundario, bordes |
+| Pearl Aqua | `#95D9C3` | hover del acento primario, bordes fuertes |
+| Aquamarine | `#A4F9C8` | énfasis puntual (ODS, acentos secundarios) |
+| Soft Cyan | `#A7FFF6` | acento primario — botones, nav, fondo animado |
+
+**Animación**: fondo aurora animado (blobs de gradiente en CSS puro, sin canvas/JS), revelado de
+texto con wipe en `clip-path`, y scroll-reveal en bloque — todo con curvas de easing tomadas de un
+sistema de motion explícito (`--ease-out` / `--ease-in-out`), nunca aproximadas. Respeta
+`prefers-reduced-motion` en todos los casos.
