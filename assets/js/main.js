@@ -27,7 +27,7 @@ if ('IntersectionObserver' in window && sections.length) {
         if (!entry.isIntersecting) return;
         const id = entry.target.getAttribute('id');
         navLinks.forEach((link) => {
-          link.style.color = link.getAttribute('href') === `#${id}` ? 'var(--text)' : '';
+          link.style.color = link.getAttribute('href') === `#${id}` ? 'var(--nav-text)' : '';
         });
       });
     },
