@@ -127,7 +127,7 @@
   <div class="wrap">
     <div class="two-col">
       <div class="media-frame">
-        <img src="assets/img/tinkercad-captura.svg" alt="Captura del circuito armado en Tinkercad" id="tinkercadImg">
+        <img src="assets/img/tinkercad-captura.svg" alt="Captura del circuito armado en Tinkercad" id="tinkercadImg" loading="lazy">
       </div>
       <div>
         <span class="eyebrow text-reveal">Fase inicial · Obligatoria</span>
@@ -166,8 +166,8 @@
 <section id="investigacion" class="section--light">
   <div class="wrap">
     <div class="two-col reverse">
-      <div class="media-frame" style="aspect-ratio:4/3; display:flex; align-items:center; justify-content:center;">
-        <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.4">
+      <div class="media-frame media-frame--doc" data-glass-sweep style="aspect-ratio:4/3; display:flex; align-items:center; justify-content:center;">
+        <svg class="svg-draw-on" width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.4">
           <path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/>
         </svg>
       </div>
@@ -201,7 +201,7 @@
       <p class="text-reveal">Resumen visual del proyecto para las autoridades del IRTRA Petapa: nombre creativo de la solución, avatares del equipo generados con IA, resumen, ODS impactado y estado del sistema.</p>
     </div>
     <div class="media-frame" style="max-width:520px; margin:0 auto;">
-      <img src="assets/img/infografia.svg" alt="Infografía ejecutiva del proyecto" id="infografiaImg">
+      <img src="assets/img/infografia.svg" alt="Infografía ejecutiva del proyecto" id="infografiaImg" loading="lazy">
     </div>
     <div class="field-note" style="justify-content:center; text-align:center;">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
@@ -220,6 +220,7 @@
     <div class="card podcast-card">
       <div class="podcast-icon">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        <div class="podcast-bars" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
       </div>
       <div>
         <h3 style="margin-bottom:4px;">[Nombre del episodio / proyecto]</h3>
