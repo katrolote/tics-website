@@ -307,6 +307,13 @@ section[id], header[id] { scroll-margin-top: 96px; }
   }
 }
 
+/*
+  flex:1 1 auto + min-width:0 en vez de flex:none: el nombre del proyecto
+  es texto libre (puede ser largo, ej. un nombre descriptivo en vez de
+  una marca corta) y no debe poder empujar los links del nav fuera de la
+  píldora — el texto se trunca con ellipsis (.nav-brand-text) y toda la
+  presión de encogimiento cae en él, nunca en .nav-menu.
+*/
 .nav-brand {
   font-family: var(--font-display);
   font-weight: 500;
@@ -317,7 +324,15 @@ section[id], header[id] { scroll-margin-top: 96px; }
   display: flex;
   align-items: center;
   gap: 8px;
-  flex: none;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.nav-brand-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .nav-brand .ghost {
@@ -341,6 +356,7 @@ section[id], header[id] { scroll-margin-top: 96px; }
   display: flex;
   align-items: center;
   gap: 32px;
+  flex: none;
 }
 
 .nav-links {
