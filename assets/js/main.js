@@ -217,18 +217,18 @@ if (teamCarousel) {
   render();
 }
 
-// Draw-on de los íconos "i" informativos (.field-note) al entrar en
-// vista — mismo principio de seguridad que .text-reveal: el estado
-// oculto (stroke-dasharray/dashoffset) se fija aquí, nunca en CSS
-// estático, así que si el script no llega a correr el ícono se ve
-// normal (trazo completo) desde el primer render. pathLength="1"
-// normaliza cualquier forma a longitud 1, así no hace falta medir cada
-// path con getTotalLength().
-const iconDrawTargets = document.querySelectorAll('.field-note svg');
+// Draw-on de íconos inline (.field-note "i", y el ícono de documento de
+// #investigacion vía .svg-draw-on) al entrar en vista — mismo principio
+// de seguridad que .text-reveal: el estado oculto (stroke-dasharray/
+// dashoffset) se fija aquí, nunca en CSS estático, así que si el script
+// no llega a correr el ícono se ve normal (trazo completo) desde el
+// primer render. pathLength="1" normaliza cualquier forma a longitud 1,
+// así no hace falta medir cada path con getTotalLength().
+const iconDrawTargets = document.querySelectorAll('.field-note svg, .svg-draw-on');
 
 if ('IntersectionObserver' in window && !prefersReducedMotion && iconDrawTargets.length) {
   iconDrawTargets.forEach((svg) => {
-    svg.querySelectorAll('circle, path').forEach((shape, i) => {
+    svg.querySelectorAll('circle, path, line').forEach((shape, i) => {
       shape.setAttribute('pathLength', '1');
       shape.style.strokeDasharray = '1';
       shape.style.strokeDashoffset = '1';
@@ -240,7 +240,7 @@ if ('IntersectionObserver' in window && !prefersReducedMotion && iconDrawTargets
     (entries, obs) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-        entry.target.querySelectorAll('circle, path').forEach((shape) => {
+        entry.target.querySelectorAll('circle, path, line').forEach((shape) => {
           shape.style.strokeDashoffset = '0';
         });
         obs.unobserve(entry.target);
@@ -249,4 +249,41 @@ if ('IntersectionObserver' in window && !prefersReducedMotion && iconDrawTargets
     { threshold: 0.4 }
   );
   iconDrawTargets.forEach((svg) => iconObserver.observe(svg));
+}
+
+// Firma de #reto: la lista de materiales se "enciende" en cascada (ver
+// .materials-list.is-lit en style.css) al entrar en vista.
+const materialsList = document.querySelector('.materials-list');
+
+if ('IntersectionObserver' in window && materialsList) {
+  const materialsObserver = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-lit');
+        obs.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.4 }
+  );
+  materialsObserver.observe(materialsList);
+}
+
+// Firma de #investigacion: barrido especular sobre el marco de vidrio
+// (ver .media-frame--doc.is-swept en style.css), una sola vez al entrar
+// en vista.
+const glassSweepTargets = document.querySelectorAll('[data-glass-sweep]');
+
+if ('IntersectionObserver' in window && glassSweepTargets.length) {
+  const sweepObserver = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-swept');
+        obs.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.4 }
+  );
+  glassSweepTargets.forEach((el) => sweepObserver.observe(el));
 }

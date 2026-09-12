@@ -1,9 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Espacio para la infografía del proyecto">
   <rect width="800" height="1000" fill="#161d1a"/>
   <rect x="12" y="12" width="776" height="976" fill="none" stroke="#2c3733" stroke-width="2" stroke-dasharray="10 8" rx="2"/>
-  <circle cx="400" cy="420" r="70" fill="none" stroke="#A4F9C8" stroke-width="3" opacity="0.6"/>
-  <line x1="400" y1="350" x2="400" y2="490" stroke="#A4F9C8" stroke-width="3" opacity="0.6"/>
-  <line x1="330" y1="420" x2="470" y2="420" stroke="#A4F9C8" stroke-width="3" opacity="0.6"/>
+  <!--
+    Draw-on vía SMIL — mismo mecanismo autocontenido que
+    tinkercad-captura.svg (ver el comentario ahí para el porqué). El
+    círculo se dibuja primero, luego la cruz de líneas, como si el nodo
+    de datos se fuera armando.
+  -->
+  <circle cx="400" cy="420" r="70" fill="none" stroke="#A4F9C8" stroke-width="3" opacity="0.6"
+          pathLength="1" stroke-dasharray="1" stroke-dashoffset="1">
+    <animate attributeName="stroke-dashoffset" from="1" to="0" begin="0.1s" dur="0.6s" calcMode="spline" keyTimes="0;1" keySplines="0.23 1 0.32 1" fill="freeze"/>
+  </circle>
+  <line x1="400" y1="350" x2="400" y2="490" stroke="#A4F9C8" stroke-width="3" opacity="0.6"
+        pathLength="1" stroke-dasharray="1" stroke-dashoffset="1">
+    <animate attributeName="stroke-dashoffset" from="1" to="0" begin="0.6s" dur="0.3s" calcMode="spline" keyTimes="0;1" keySplines="0.23 1 0.32 1" fill="freeze"/>
+  </line>
+  <line x1="330" y1="420" x2="470" y2="420" stroke="#A4F9C8" stroke-width="3" opacity="0.6"
+        pathLength="1" stroke-dasharray="1" stroke-dashoffset="1">
+    <animate attributeName="stroke-dashoffset" from="1" to="0" begin="0.75s" dur="0.3s" calcMode="spline" keyTimes="0;1" keySplines="0.23 1 0.32 1" fill="freeze"/>
+  </line>
   <text x="400" y="560" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="22" fill="#8AA39B">Infografía del proyecto</text>
   <text x="400" y="592" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="14" fill="#6d7f79">Reemplaza assets/img/infografia.svg por tu infografía (.png/.jpg/.pdf)</text>
 </svg>

@@ -1,16 +1,44 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" role="img" aria-label="Espacio para captura del circuito en Tinkercad">
   <rect width="800" height="480" fill="#161d1a"/>
   <rect x="12" y="12" width="776" height="456" fill="none" stroke="#2c3733" stroke-width="2" stroke-dasharray="10 8" rx="2"/>
+  <!--
+    Draw-on animado vía SMIL (<animate>), autocontenido en el archivo: se
+    reproduce igual cargado como <img src>, sin JS/CSS externo (a
+    diferencia de un <img>, este SVG puede autoanimarse por dentro). Cada
+    forma usa pathLength="1" + stroke-dasharray/dashoffset normalizados,
+    fill="freeze" para quedar dibujada al terminar. Nota de accesibilidad:
+    SMIL dentro de un <img> no puede leer prefers-reduced-motion (no hay
+    forma de que un archivo SVG standalone consulte esa media query) —
+    por eso el trazo es breve (~1.1s), una sola vez, sin loop.
+  -->
   <g stroke="#A7FFF6" stroke-width="2" opacity="0.55" fill="none">
-    <rect x="330" y="180" width="140" height="90" rx="4"/>
-    <line x1="330" y1="210" x2="270" y2="210"/>
-    <line x1="470" y1="210" x2="530" y2="210"/>
-    <line x1="330" y1="240" x2="270" y2="240"/>
-    <line x1="470" y1="240" x2="530" y2="240"/>
-    <circle cx="270" cy="210" r="6"/>
-    <circle cx="270" cy="240" r="6"/>
-    <circle cx="530" cy="210" r="6"/>
-    <circle cx="530" cy="240" r="6"/>
+    <rect x="330" y="180" width="140" height="90" rx="4" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1">
+      <animate attributeName="stroke-dashoffset" from="1" to="0" begin="0.1s" dur="0.5s" calcMode="spline" keyTimes="0;1" keySplines="0.23 1 0.32 1" fill="freeze"/>
+    </rect>
+    <line x1="330" y1="210" x2="270" y2="210" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1">
+      <animate attributeName="stroke-dashoffset" from="1" to="0" begin="0.5s" dur="0.3s" calcMode="spline" keyTimes="0;1" keySplines="0.23 1 0.32 1" fill="freeze"/>
+    </line>
+    <line x1="470" y1="210" x2="530" y2="210" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1">
+      <animate attributeName="stroke-dashoffset" from="1" to="0" begin="0.5s" dur="0.3s" calcMode="spline" keyTimes="0;1" keySplines="0.23 1 0.32 1" fill="freeze"/>
+    </line>
+    <line x1="330" y1="240" x2="270" y2="240" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1">
+      <animate attributeName="stroke-dashoffset" from="1" to="0" begin="0.65s" dur="0.3s" calcMode="spline" keyTimes="0;1" keySplines="0.23 1 0.32 1" fill="freeze"/>
+    </line>
+    <line x1="470" y1="240" x2="530" y2="240" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1">
+      <animate attributeName="stroke-dashoffset" from="1" to="0" begin="0.65s" dur="0.3s" calcMode="spline" keyTimes="0;1" keySplines="0.23 1 0.32 1" fill="freeze"/>
+    </line>
+    <circle cx="270" cy="210" r="6" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1">
+      <animate attributeName="stroke-dashoffset" from="1" to="0" begin="0.8s" dur="0.25s" calcMode="spline" keyTimes="0;1" keySplines="0.23 1 0.32 1" fill="freeze"/>
+    </circle>
+    <circle cx="270" cy="240" r="6" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1">
+      <animate attributeName="stroke-dashoffset" from="1" to="0" begin="0.95s" dur="0.25s" calcMode="spline" keyTimes="0;1" keySplines="0.23 1 0.32 1" fill="freeze"/>
+    </circle>
+    <circle cx="530" cy="210" r="6" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1">
+      <animate attributeName="stroke-dashoffset" from="1" to="0" begin="0.8s" dur="0.25s" calcMode="spline" keyTimes="0;1" keySplines="0.23 1 0.32 1" fill="freeze"/>
+    </circle>
+    <circle cx="530" cy="240" r="6" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1">
+      <animate attributeName="stroke-dashoffset" from="1" to="0" begin="0.95s" dur="0.25s" calcMode="spline" keyTimes="0;1" keySplines="0.23 1 0.32 1" fill="freeze"/>
+    </circle>
   </g>
   <text x="400" y="320" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="20" fill="#8AA39B">Captura del circuito — Tinkercad</text>
   <text x="400" y="350" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="14" fill="#6d7f79">Reemplaza assets/img/tinkercad-captura.svg por tu captura real (.png/.jpg)</text>
