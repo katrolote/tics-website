@@ -9,18 +9,22 @@ trails, elegant, moody, cinematic, no text, no logos, no people, ultra high
 detail"*. No es un placeholder — pueden reemplazarlo por otra imagen si
 prefieren otro fondo, pero no es obligatorio.
 
-Cada archivo `.svg` de esta carpeta (excepto `hero-bg.jpg`) es un **placeholder** — la página funciona y se ve completa
-sin que hagan nada, pero deben reemplazarlos por su contenido real antes de la entrega.
+Solo queda un placeholder real en esta carpeta: `tinkercad-captura.svg` (la página funciona y se ve
+completa sin tocarlo, pero debe reemplazarse por la captura real antes de la entrega).
 
 | Archivo actual | Reemplazar por | Usado en |
 |---|---|---|
 | `tinkercad-captura.svg` | Captura legible del circuito armado en Tinkercad | sección Circuito |
-| `infografia.svg` | Infografía ejecutiva del proyecto | sección Infografía |
 
 Los avatares y fotos del equipo ya no son placeholders — `avatar-1.jpg`/`avatar-2.jpg`/`avatar-3.jpg`
 (avatares generados con IA) y `team-1-foto.jpg`/`team-2-foto.jpg`/`team-3-foto.jpg` (fotos reales) ya
 están cargados en la sección Equipo, con la tarjeta activa girando en 3D al pasar el cursor para
 mostrar el avatar detrás de la foto.
+
+`infografia.svg` tampoco es un placeholder: es la infografía ejecutiva real (SVG, generada a partir
+del contenido ya cargado en la página — nombre del proyecto, ODS, estado del sistema, los 4
+componentes del circuito y los 3 avatares del equipo con nombre y rol), embebida como un solo
+archivo vectorial escalable en la sección Infografía.
 
 ## Cómo reemplazar
 
@@ -28,6 +32,5 @@ mostrar el avatar detrás de la foto.
 extensión real (por ejemplo `avatar-1.png`), y en `index.html` cambien el `src` correspondiente
 de `.svg` a `.png` (o `.jpg`). Es una sola palabra por archivo.
 
-**Reto de Prompt Engineering (avatares e infografía):** la guía pide que el resultado NO se vea
-"genérico de IA" — iteren el prompt hasta lograr un acabado pulido, orgánico y profesional antes
-de reemplazar el placeholder.
+**Reto de Prompt Engineering (avatares):** la guía pide que el resultado NO se vea "genérico de IA"
+— iteren el prompt hasta lograr un acabado pulido, orgánico y profesional.
