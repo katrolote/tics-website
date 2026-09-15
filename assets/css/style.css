@@ -943,7 +943,44 @@ audio { width: 100%; margin-top: 18px; }
   .team-slide[data-offset='0'] .team-card:hover { transform: translateY(-4px); }
 }
 
-.team-card img { aspect-ratio: 1 / 1; object-fit: cover; }
+/*
+  Flip 3D foto → avatar: la tarjeta activa (offset 0) muestra la foto real
+  al frente; al pasar el cursor por encima, .team-card-flip-inner gira
+  180° en el eje Y y deja ver el avatar generado con IA en la cara trasera.
+  Solo se activa con hover real (mouse), no en touch, para no dejar el
+  flip "a medias" en móvil; ahí la foto se queda fija al frente.
+*/
+.team-card-flip {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  perspective: 1200px;
+}
+
+.team-card-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 650ms var(--ease-in-out);
+  transform-style: preserve-3d;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .team-slide[data-offset='0'] .team-card:hover .team-card-flip-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+.team-card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.team-card-face img { width: 100%; height: 100%; object-fit: cover; }
+
+.team-card-face--back { transform: rotateY(180deg); }
 
 .team-card-body { padding: 22px 24px 26px; }
 
