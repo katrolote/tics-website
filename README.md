@@ -16,9 +16,9 @@ completa tal cual, pero deben reemplazar:
 3. **Captura de Tinkercad + enlace al circuito** — `assets/img/tinkercad-captura.svg` y el botón "Abrir circuito en Tinkercad".
 4. **Video del circuito funcionando** — `assets/video/circuito-demo.mp4` (ver `assets/video/README.md`).
 5. **Documento de investigación (.docx/.pdf)** — ver `docs/README.md`.
-6. **Infografía ejecutiva** — `assets/img/infografia.svg` (ver `assets/img/README.md`).
+6. ~~Infografía ejecutiva~~ — ya cargada (`assets/img/infografia.svg`, ver `assets/img/README.md`).
 7. **Podcast** — `assets/audio/podcast.mp3` (ver `assets/audio/README.md`).
-8. ~~Avatares y fotos del equipo~~ — ya cargados (`assets/img/avatar-1.jpg` a `avatar-3.jpg` y `team-1-foto.jpg` a `team-3-foto.jpg`); solo falta completar rol/nombre/responsabilidad de cada integrante en `index.html`.
+8. ~~Avatares, fotos, nombres y roles del equipo~~ — ya cargados; solo falta la responsabilidad técnica de cada integrante (`[Rol técnico o responsabilidad dentro del proyecto]` en `index.html`).
 
 Cada carpeta de `assets/` tiene su propio `README.md` con el detalle exacto.
 
