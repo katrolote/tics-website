@@ -14,11 +14,13 @@ sin que hagan nada, pero deben reemplazarlos por su contenido real antes de la e
 
 | Archivo actual | Reemplazar por | Usado en |
 |---|---|---|
-| `avatar-1.svg` | Avatar del integrante 1 generado con IA | sección Equipo |
-| `avatar-2.svg` | Avatar del integrante 2 generado con IA | sección Equipo |
-| `avatar-3.svg` | Avatar del integrante 3 generado con IA | sección Equipo |
 | `tinkercad-captura.svg` | Captura legible del circuito armado en Tinkercad | sección Circuito |
 | `infografia.svg` | Infografía ejecutiva del proyecto | sección Infografía |
+
+Los avatares y fotos del equipo ya no son placeholders — `avatar-1.jpg`/`avatar-2.jpg`/`avatar-3.jpg`
+(avatares generados con IA) y `team-1-foto.jpg`/`team-2-foto.jpg`/`team-3-foto.jpg` (fotos reales) ya
+están cargados en la sección Equipo, con la tarjeta activa girando en 3D al pasar el cursor para
+mostrar el avatar detrás de la foto.
 
 ## Cómo reemplazar
 

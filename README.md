@@ -18,7 +18,7 @@ completa tal cual, pero deben reemplazar:
 5. **Documento de investigación (.docx/.pdf)** — ver `docs/README.md`.
 6. **Infografía ejecutiva** — `assets/img/infografia.svg` (ver `assets/img/README.md`).
 7. **Podcast** — `assets/audio/podcast.mp3` (ver `assets/audio/README.md`).
-8. **Avatares del equipo generados con IA** — `assets/img/avatar-1.svg`, `avatar-2.svg`, `avatar-3.svg`.
+8. ~~Avatares y fotos del equipo~~ — ya cargados (`assets/img/avatar-1.jpg` a `avatar-3.jpg` y `team-1-foto.jpg` a `team-3-foto.jpg`); solo falta completar rol/nombre/responsabilidad de cada integrante en `index.html`.
 
 Cada carpeta de `assets/` tiene su propio `README.md` con el detalle exacto.
 

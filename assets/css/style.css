@@ -943,8 +943,6 @@ audio { width: 100%; margin-top: 18px; }
   .team-slide[data-offset='0'] .team-card:hover { transform: translateY(-4px); }
 }
 
-.team-card > img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
-
 /*
   Flip 3D foto → avatar: la tarjeta activa (offset 0) muestra la foto real
   al frente; al pasar el cursor por encima, .team-card-flip-inner gira

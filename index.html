@@ -254,12 +254,11 @@
       todo momento (no display:none), así que un lector de pantalla lo
       lee igual sin depender del estado visual del carrusel.
 
-      Tarjetas con foto real + avatar IA: llevan .team-card-flip con dos
-      caras (.team-card-face--front la foto, .team-card-face--back el
-      avatar) que giran en 3D al pasar el cursor por encima (solo en la
-      tarjeta activa, offset 0 — las laterales tienen pointer-events:none).
-      La tarjeta sin foto (integrante 3) se queda con un solo <img>, sin
-      envoltorio de flip.
+      Los 3 integrantes tienen foto real + avatar IA: cada .team-card lleva
+      .team-card-flip con dos caras (.team-card-face--front la foto,
+      .team-card-face--back el avatar) que giran en 3D al pasar el cursor
+      por encima (solo en la tarjeta activa, offset 0 — las laterales
+      tienen pointer-events:none).
     -->
     <div class="team-carousel" data-team-carousel>
       <div class="team-stage">
@@ -273,7 +272,7 @@
                     <img src="assets/img/team-1-foto.jpg" alt="Foto de [Nombre Apellido]">
                   </div>
                   <div class="team-card-face team-card-face--back">
-                    <img src="assets/img/avatar-1.png" alt="Avatar generado con IA — integrante 1">
+                    <img src="assets/img/avatar-1.jpg" alt="Avatar generado con IA — integrante 1">
                   </div>
                 </div>
               </div>
@@ -292,7 +291,7 @@
                     <img src="assets/img/team-2-foto.jpg" alt="Foto de [Nombre Apellido]">
                   </div>
                   <div class="team-card-face team-card-face--back">
-                    <img src="assets/img/avatar-2.png" alt="Avatar generado con IA — integrante 2">
+                    <img src="assets/img/avatar-2.jpg" alt="Avatar generado con IA — integrante 2">
                   </div>
                 </div>
               </div>
@@ -305,7 +304,16 @@
           </li>
           <li class="team-slide" data-slide data-offset="-1">
             <article class="team-card">
-              <img src="assets/img/avatar-3.svg" alt="Avatar generado con IA — integrante 3">
+              <div class="team-card-flip">
+                <div class="team-card-flip-inner">
+                  <div class="team-card-face team-card-face--front">
+                    <img src="assets/img/team-3-foto.jpg" alt="Foto de [Nombre Apellido]">
+                  </div>
+                  <div class="team-card-face team-card-face--back">
+                    <img src="assets/img/avatar-3.jpg" alt="Avatar generado con IA — integrante 3">
+                  </div>
+                </div>
+              </div>
               <div class="team-card-body">
                 <div class="role">[Rol en el equipo]</div>
                 <h4>[Nombre Apellido]</h4>
@@ -327,7 +335,7 @@
     </div>
     <div class="field-note">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-      <span>Reemplacen <code>assets/img/avatar-3.svg</code> por el avatar generado con IA del tercer integrante (Reto de Prompt Engineering: eviten el acabado "genérico de IA"). Los integrantes 1 y 2 ya usan foto real (<code>team-1-foto.jpg</code>, <code>team-2-foto.jpg</code>) que gira al pasar el cursor y muestra su avatar IA (<code>avatar-1.png</code>, <code>avatar-2.png</code>) detrás.</span>
+      <span>Completen el <code>[Rol en el equipo]</code>, <code>[Nombre Apellido]</code> y la responsabilidad de cada integrante — las fotos y avatares generados con IA ya están cargados y giran al pasar el cursor sobre la tarjeta activa.</span>
     </div>
   </div>
 </section>
